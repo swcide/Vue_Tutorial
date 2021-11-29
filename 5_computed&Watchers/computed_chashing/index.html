@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+   
+
+
+
+    
+    <div id="app">
+        <div class="static" :class="{ active: isActive, text-danger: hasError }"> </div>
+        <div>{{ reverseMsg() }}</div>
+        <div>{{ msg.split('').reverse().join('') }}</div>
+        <div>--------------------------</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ reversedMsg }}</div>
+        <div>{{ computedNow }}</div>
+        <div>{{ methodsNow() }}</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: "Hello Vue!"
+            },
+            computed: {
+                reversedMsg () {
+                    return this.msg.split('').reverse().join('')
+                }
+                ,
+                computedNow () {
+                    return Date.now()
+                }
+            },
+            methods:{
+                reverseMsg () {
+                    return this.msg.split('').reverse().join('')
+                },
+                methodsNow () {
+                    return Date.now()
+                }
+                
+            }
+        })
+
+    </script>
+</body>
+
+</html>
