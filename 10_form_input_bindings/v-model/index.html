@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <input type="text" @change="msg = $event.target.value" :value="msg" /> -->
+
+      <!-- change 대신 씀
+      <input type="text" v-model.lazy="msg" /> -->
+
+      <!-- 공백제거!
+      <input type="text" v-model.trim ="msg"> -->
+
+      <!-- 숫자형으로 바꿔줌! -->
+      <input type="text" v-model.number="msg" />
+
+      <div>{{msg}}</div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "Hello~~",
+        },
+        methods: {
+          bindMsg(event) {
+            this.msg = event.target.value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

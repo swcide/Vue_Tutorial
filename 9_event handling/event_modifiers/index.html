@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <style>
+      .parent {
+        width: 200px;
+        height: 200px;
+        background: blue;
+      }
+      .child {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+    </style>
+    <div id="app">
+      <!-- 페어런츠가 먼저 나오게함
+      <div class="parent" @click.capture="clickHandler"> -->
+
+      <!-- 본인만 . 자식 클래스를 누르면 본인이 안뜸. -->
+      <div class="parent" @click.self="clickHandler">
+        <!-- stop. 이벤트 버블링을 막음 -->
+        <div class="child"></div>
+      </div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        methods: {
+          clickHandler(event) {
+            console.log(event.currentTarget.className);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="app">
+        <button @click="pushTodo">Push</button>
+        <ul class="todos">
+          <li v-for="(todo, index) in todos" :key="index">{{todo.title}}</li>
+        </ul>
+
+        <button @click="addHomepage">Add homepage</button>
+        <ul class="heropy">
+          <!-- 객체는 value , key , index -->
+          <li v-for="(value, key, index) in heropy" :key="index">
+            {{ value }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          todos: [
+            { title: "아침 먹기" },
+            { title: "점심 먹기" },
+            { title: "저녁 먹기" },
+          ],
+          heropy: {
+            name: "HEROPY",
+            age: 35,
+          },
+        },
+        methods: {
+          pushTodo() {
+            // this.todos[3] = { title: "야식먹기" };
+            // this.todos.push({ title: "야식 먹기" });
+            // 전역으로 쓰기엔 무리가 있다. set!
+            // Vue.set(this.todos, 3, { title: "야식 먹기!! " });
+            // 그래서 vm.$set 근데 vm <- this로 대처 가능
+            this.$set(this.todos, 3, { title: "야식 먹기!! " });
+          },
+          addHomepage() {
+            this.$set(this.heropy, "hompage", "heropy.blog");
+          },
+          // 객체에 추가 하는 법  Object.assign으로 객체를 새로 만든 후 합체함.
+          //vm.heropy = Object.assign({},vm.heropy,{homepage:'heropy.blog'})
+        },
+      });
+    </script>
+  </body>
+</html>

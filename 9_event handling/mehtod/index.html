@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="app">
+        <ul>
+          <li
+            v-for="(todo, index) in todos"
+            :key="index"
+            :class="'item-' + (index + 1)"
+            @click="clickMethods1(todo.title, $event); clickMethod2();"
+          >
+            {{todo.title}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          todos: [
+            { title: "아침 먹기" },
+            { title: "점심 먹기" },
+            { title: "저녁 먹기" },
+          ],
+        },
+        methods: {
+          clickMethods1(title, event) {
+            console.log("click1");
+            console.log(title);
+            console.log(event.currentTarget.className);
+          },
+          clickMethod2() {
+            console.log("click2");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

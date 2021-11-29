@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app1">
+      <my-component />
+    </div>
+
+    <div id="app2">
+      <my-component />
+    </div>
+
+    <script>
+      // 전역등록 !!
+      // 컴포넌트 이름은 2개 단어 이상
+      // Vue.component("my-component", {
+      //   template: '<div class="me">{{msg}}</div>',
+      //   data: function () {
+      //     return {
+      //       msg: "Hello Vue!",
+      //     };
+      //   },
+      // });
+
+      const myComponent = {
+        template: '<div class="me">{{msg}}</div>',
+        data: function () {
+          return {
+            msg: "Hello Vue!",
+          };
+        },
+      };
+
+      const vm1 = new Vue({
+        el: "#app1",
+        components: {
+          "my-component": myComponent,
+        },
+      });
+
+      // 위랑 상관없이 가능 . 카멜케이스
+      const vm2 = new Vue({
+        el: "#app2",
+        components: {
+          myComponent,
+        },
+      });
+    </script>
+  </body>
+</html>

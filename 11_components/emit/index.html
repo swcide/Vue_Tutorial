@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <my-comp :msg="msg" @my-event="updateMessage"></my-comp>
+    </div>
+
+    <script>
+      Vue.component("my-comp", {
+        template: '<div @click="updateMsg">{{ msg }}</div>',
+        props: {
+          msg: {
+            type: [String, Number],
+            default: "Default",
+            required: true,
+            // validator: function (value) {
+            //   return value === "hello";
+            // },
+          },
+        },
+        methods: {
+          updateMsg() {
+            // this.msg = "Good";
+            // $emit(이름, 데이터)
+            this.$emit("my-event", "Good");
+          },
+        },
+      });
+
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            msg: "hello",
+          };
+        },
+        methods: {
+          updateMessage(value) {
+            this.msg = value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
